@@ -9,7 +9,7 @@ package T1;
 //        Сите променливи треба да бидат приватни. Соодветно во рамките на класата да се дефинираат:
 //
 //default конструктор и конструктор со аргументи
-//        метод за печатење на информациите за филмот
+//        метод за печатење на информациите за Person
 //        Дополнително да се реализира надворешна функција и да се промени класата со тоа што ќе додадеш и surname vo klasata:
 //
 //        void printPersonWithHighestSalary(List<Person>) која ќе прима lista od Personi i
@@ -19,7 +19,13 @@ package T1;
 // klasa?
 // metodi i promenlivi -> private, public i protected
 
+// Koga zboruvame za kreiranje na Objekt(Klasa) gledame vo Constructor
+// Koga zboruvame za printanje gledame vo toString
+// Koga praveme default constructor, sekogas treba da imame setteri za atributite
+// BufferedReader - Go koristeme za da citame i zapisanje podatoci od: vlez,file,input.
+
 import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -32,6 +38,51 @@ enum JobPosition{
     WORKER
 }
 
+class KFCWorker{
+    private String name;
+    private String surname;
+    private JobPosition jobPosition;
+
+    public KFCWorker(String name, String surname, JobPosition jobPosition) {
+        this.name = name;
+        this.surname = surname;
+        this.jobPosition = jobPosition;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public JobPosition getJobPosition() {
+        return jobPosition;
+    }
+
+    public void setJobPosition(JobPosition jobPosition) {
+        this.jobPosition = jobPosition;
+    }
+
+    @Override
+    public String toString() {
+        return "KFCWorker{" +
+                "name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", jobPosition=" + jobPosition +
+                '}';
+    }
+}
+
 public class Person {
 
     private String name;
@@ -39,10 +90,34 @@ public class Person {
     private JobPosition jobPosition;
     private String surname;
 
+
     public Person(String name,String surname, int salary, JobPosition jobPosition) {
         this.name = name;
         this.salary = salary;
         this.jobPosition = jobPosition;
+        this.surname = surname;
+    }
+
+    public Person(){
+        this.name = "Teo";
+        this.salary = 0;
+        this.jobPosition = JobPosition.WORKER;
+        this.surname =  "";
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setSalary(int salary) {
+        this.salary = salary;
+    }
+
+    public void setJobPosition(JobPosition jobPosition) {
+        this.jobPosition = jobPosition;
+    }
+
+    public void setSurname(String surname) {
         this.surname = surname;
     }
 
@@ -80,17 +155,27 @@ public class Person {
 
     @Override
     public String toString() {
-        return "Name: " + name + "\nSalary: " + salary + "\nJobPosition: " + jobPosition;
+        return "Name: " + name +"\nSurnname: " + surname + "\nSalary: " + salary + "\nJobPosition: " + jobPosition;
     }
 
     public static void main(String[] args) throws IOException {
 
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 
+        // procitaj od terminal i zacuvaj ja vrednosta vo promenlivata n
         int n = Integer.parseInt(bufferedReader.readLine());
 
 
         List<Person> people = new ArrayList<>();
+
+//        Person p = new Person("asd","asd",243,JobPosition.DIRECTOR);
+//        Person p2 = new Person();
+//        p2.setName("Mihail");
+//        p2.setSurname("Mijalov");
+//        p2.salary = 1000;
+//        System.out.println(p);
+//        System.out.println();
+//        System.out.println(p2);
 
 
         for(int i = 0;i < n;i++){
@@ -116,6 +201,10 @@ public class Person {
 //            System.out.println("------------------");
 //        }
 
+        //KFC
+        KFCWorker kfcWorker = new KFCWorker("w1","s1",JobPosition.WORKER);
+        System.out.println(kfcWorker);
+
 
 
 
@@ -126,6 +215,7 @@ public class Person {
 
 
 }
+
 
 // INPUT
 //3 -> n
